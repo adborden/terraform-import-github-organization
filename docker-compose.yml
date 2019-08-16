@@ -1,0 +1,11 @@
+version: "3"
+services:
+  test:
+    build:
+      context: .
+    # Run bats will find *.bats files within
+    # the test directory.
+    command: -r /app/test
+    working_dir: /app
+    volumes:
+      - .:/app
