@@ -128,6 +128,29 @@ set (either editing the script or via an environment variable) the
 `API_URL_PREFIX` correctly,
 e.g. `https://github.mycompany.com/api/v3`.
 
+
+# Testing
+
+_This is a work in progress. New features can be developed under testing._
+
+Requirements:
+
+- [Docker Compose](https://docs.docker.com/compose/)
+
+Use [Bats](https://github.com/bats-core/bats-core) for unit testing. We use
+docker-compose to simplify the installation of dependencies.
+
+    $ docker-compose up
+
+_Note: in order to unit test a function, it must be in a lib file that can be
+sourced from the test and the main script. It also helps if the function does
+not call nested functions, since it make sit difficult to isolate and test
+individual behaviors. Further, writing functions to print to std out and then
+only writing to file in the main script would allow us to make assertions on the
+function output without writing files to locations we cannot control (e.g.
+`./github-users.tf`._
+
+
 # FAQ
 - Q) Why bash?
   - A) I like bash.
